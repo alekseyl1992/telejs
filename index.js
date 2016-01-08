@@ -1,5 +1,6 @@
 var TelegramBot = require('node-telegram-bot-api');
 var Sandbox = require('sandbox');
+var markdownEscape = require('markdown-escape');
 
 var token = require('./token').token;
 
@@ -17,7 +18,7 @@ bot.on('inline_query', function (msg) {
     return;
 
   s.run(msg.query, function(output) {
-    var text = '*' + msg.query + '*\n' + output.result;
+    var text = '*' + markdownEscape(msg.query) + '*\n' + markdownEscape(output.result);
     console.log('Output:');
     console.log(text);
 
