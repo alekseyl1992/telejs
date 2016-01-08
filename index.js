@@ -32,7 +32,10 @@ bot.on('inline_query', (msg) => {
       disable_web_page_preview: true,
       hide_url: true,
       /*parse_mode: 'Markdown'*/
-    }]).then(
+    }], {
+      cache_time: 1
+    }
+    ).then(
       (value) => {
         console.log(value);
         console.log('-----end------');
