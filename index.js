@@ -9,7 +9,7 @@ var s = new Sandbox();
 
 console.log('Bot started: ' + new Date());
 
-bot.on('inline_query', function (msg) {
+bot.on('inline_query', (msg) => {
   console.log('-----begin----');
   console.log('Input:');
   console.log(msg);
@@ -17,7 +17,7 @@ bot.on('inline_query', function (msg) {
   if (msg.query == '')
     return;
 
-  s.run(msg.query, function(output) {
+  s.run(msg.query, (output) => {
     var text = '*' + markdownEscape(msg.query) + '*\n' + markdownEscape(output.result);
     console.log('Output:');
     console.log(text);
@@ -34,12 +34,13 @@ bot.on('inline_query', function (msg) {
     }]).then(
       (value) => {
         console.log(value);
-        console.log('-----end------')
+        console.log('-----end------');
       },
       (error) => {
         console.log(error);
         console.log('-----end------');
-    }
+      }
+    )
   });
 });
 
