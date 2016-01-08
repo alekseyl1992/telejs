@@ -26,13 +26,20 @@ bot.on('inline_query', function (msg) {
     bot.answerInlineQuery(msg.id, [{
       id: '0',
       type: 'article',
-      title: output.result,
+      title: markdownEscape(output.result),
       message_text: text,
       disable_web_page_preview: true,
       hide_url: true,
       parse_mode: 'Markdown'
-    }]).then((value) => console.log(value, '-----end------'),
-             (error) => console.log(error, '-----end------'));
+    }]).then(
+      (value) => {
+        console.log(value);
+        console.log('-----end------')
+      },
+      (error) => {
+        console.log(error);
+        console.log('-----end------');
+    }
   });
 });
 
