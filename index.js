@@ -18,7 +18,8 @@ bot.on('inline_query', (msg) => {
     return;
 
   s.run(msg.query, (output) => {
-    var text = '*' + markdownEscape(msg.query) + '*\n' + markdownEscape(output.result);
+    //var text = '*' + markdownEscape(msg.query) + '*\n' + markdownEscape(output.result);
+    var text = msg.query + '\n' + output.result;
     console.log('Output:');
     console.log(text);
 
@@ -26,11 +27,11 @@ bot.on('inline_query', (msg) => {
     bot.answerInlineQuery(msg.id, [{
       id: '0',
       type: 'article',
-      title: markdownEscape(output.result),
+      title: output.result,
       message_text: text,
       disable_web_page_preview: true,
       hide_url: true,
-      parse_mode: 'Markdown'
+      /*parse_mode: 'Markdown'*/
     }]).then(
       (value) => {
         console.log(value);
